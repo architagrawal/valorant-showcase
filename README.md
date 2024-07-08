@@ -1,2 +1,3 @@
-# valorant-showcase
-A simple website that displays info regarding valorant. Thanks to Valorant-api(https://dash.valorant-api.com/) for data. 
+# Valorant Showcase
+
+A simple website that displays information about Valorant. Special thanks to the [Valorant API](https://dash.valorant-api.com/) for providing the data.
