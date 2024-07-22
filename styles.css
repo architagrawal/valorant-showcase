@@ -13,7 +13,14 @@ body {
   display: grid;
   place-content: center;
   min-height: 100vh;
-  background-color: black;
+  background-image: url("a11b229b98bb091f8d78b8cf73f085599cfcae3a-1920x1080.webp");
+  /* background-image: url("https://media.valorant-api.com/maps/7eaecc1b-4337-bbf6-6ab9-04b8f06b3319/stylizedbackgroundimage.png"); */
+  /* background-image: url("https://media.valorant-api.com/maps/7eaecc1b-4337-bbf6-6ab9-04b8f06b3319/premierbackgroundimage.png"); */
+  background-blend-mode: soft-light;
+  background-repeat: no-repeat;
+
+  background-size: cover;
+  /* background-color: black; */
 }
 
 .container {
@@ -48,27 +55,12 @@ body {
 } */
 .container .box:hover {
   filter: grayscale(0%) opacity(100%);
-  animation: rotate 7s infinite linear;
+  animation: rotate 4s infinite both running;
+  animation-timing-function: ease-in-out;
 }
-
-.container:has(.box-1:hover) {
-  grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
-}
-
-.container:has(.box-2:hover) {
-  grid-template-columns: 1fr 3fr 1fr 1fr 1fr;
-}
-
-.container:has(.box-3:hover) {
-  grid-template-columns: 1fr 1fr 3fr 1fr 1fr;
-}
-
-.container:has(.box-4:hover) {
-  grid-template-columns: 1fr 1fr 1fr 3fr 1fr;
-}
-
-.container:has(.box-5:hover) {
-  grid-template-columns: 1fr 1fr 1fr 1fr 3fr;
+.carousel-wrapper {
+  display: flex;
+  transition: transform 1s ease;
 }
 
 .box:nth-child(odd) {
@@ -79,23 +71,23 @@ body {
   transform: translateY(16px);
 }
 
-.box::after {
+.box::before {
   content: attr(data-text);
   position: absolute;
-  bottom: 20px;
+  top: 20px;
   background: #000;
   color: white;
   padding: 10px 10px 10px 14px;
   text-transform: uppercase;
   letter-spacing: 4px;
-  transform: translateY(60px);
+  transform: translateY(-60px);
   opacity: 0;
   transition: all 500ms;
-  animation-play-state: paused;
 }
 
-.box:hover::after {
-  transform: translateY(0);
+.box:hover::before {
+  /* animation: rotate 0s infinite linear; */
+  transform: translateY(-15px);
   opacity: 1;
   transition-delay: 20ms;
 }
@@ -108,6 +100,6 @@ body {
     transform: rotateY(360deg);
   }
 }
-.box:hover {
+/* .box:hover {
   animation-play-state: paused;
-}
+} */
