@@ -31,11 +31,19 @@ function updateDisplayedAgents(agents) {
 
   agents.forEach((character, i) => {
     const box = document.createElement("div");
+    const boxImage = document.createElement("div");
+    boxImage.classList.add("box-image");
     box.classList.add("box");
     box.classList.add(`box-${i + 1}`);
-    box.setAttribute("data-text", character.displayName); // Display name
-    box.style.setProperty("--background-image", `url(${character.background})`); // Display icon
-    box.style.setProperty("--img", `url(${character.fullPortrait})`); // Full portrait
+    const agentName = document.createElement("div");
+    const agentText = document.createElement("p");
+    agentText.textContent = character.displayName;
+    agentName.classList.add("agent-name");
+    boxImage.style.setProperty(
+      "--background-image",
+      `url(${character.background})`
+    );
+    boxImage.style.setProperty("--img", `url(${character.fullPortrait})`); // Full portrait
     let colorValues = character.backgroundGradientColors.map(
       (color) => `#${color}`
     );
@@ -53,12 +61,16 @@ function updateDisplayedAgents(agents) {
 
     box.addEventListener("mouseleave", () => {
       rotationInterval = setInterval(rotateAgents, 3000); // Resume rotation on leave
-      // document.body.style.background = "";
-      container.style.gridTemplateColumns = "1fr 1fr 1.5fr 1fr 1fr";
+
+      container.style.gridTemplateColumns = "1fr 1.25fr 1.5fr 1.25fr 1fr";
     });
 
-    box.style.setProperty("--role-color", backgroundGradientColors);
+    boxImage.style.setProperty("--role-color", backgroundGradientColors);
+    agentName.appendChild(agentText);
+    box.appendChild(boxImage);
+    box.appendChild(agentName);
     container.appendChild(box);
+    container.style.gridTemplateColumns = "1fr 1.25fr 1.5fr 1.25fr 1fr";
   });
 }
 
@@ -74,7 +86,7 @@ function rotateAgents() {
     );
   }
 
-  updateDisplayedAgents(displayedAgents);
+  updateDisplayedAgents(displayedAgents); //pasue new agents carousal
 }
 
 // Call the fetchData function when the page loads
